@@ -1,4 +1,4 @@
-This repository contains selected versions of nimbus from 1996 through 2003.
+This repository contains selected versions of nimbus from 1996 through 2003.  This covers most of the (Aircraft Data System) ADS2 life span.  Full revision control started after this date and can be found in the NCAR/nimbus repository.
 
 Derived parameter equations can be found in nimbus/src/amlib/std.
 
