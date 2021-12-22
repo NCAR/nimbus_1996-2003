@@ -1,0 +1,104 @@
+/*
+-------------------------------------------------------------------------
+OBJECT NAME:	cnctr.c
+
+FULL NAME:	CN Counter
+
+ENTRY POINTS:	sconcn(), sxicnx(), sfcnc(), scntsm()
+
+STATIC FNS:	none
+
+DESCRIPTION:	Computation for the CN Counter, see Cindy Towhy for in
+		depth information.
+
+INPUT:		
+
+OUTPUT:		
+
+REFERENCES:	none
+
+REFERENCED BY:	compute.c
+
+COPYRIGHT:	University Corporation for Atmospheric Research, 1993-95
+-------------------------------------------------------------------------
+*/
+
+#include <math.h>
+#include "nimbus.h"
+#include "amlib.h"
+
+
+static NR_TYPE	DIV;
+static NR_TYPE	fcnc, xicnc, cntsm, cntold, cntolder;
+
+/* -------------------------------------------------------------------- */
+void cnctrInit()
+{
+	DIV = (GetDefaultsValue("DIV"))[0];
+
+}	/* END CNCTRINIT */
+
+/* -------------------------------------------------------------------- */
+void sconcn(varp)
+DERTBL	*varp;
+{
+	NR_TYPE	concn, fcbads, fcn, pcn, xicn, cnts;
+
+	fcbads	= GetSample(varp, 0);
+	fcn	= GetSample(varp, 1);
+	pcn	= GetSample(varp, 2);
+	xicn	= GetSample(varp, 3);
+	cnts	= GetSample(varp, 4);
+
+	/* FCNC = Corrected sample flow rate in vlpm
+	 */
+	fcnc	= fcn*(1013.25/pcn)*((fcbads+273.15)/294.26);
+	xicnc	= xicn*(1013.25/pcn)*((fcbads+273.15)/294.26);
+
+	if (fcnc <= 0.0)
+		fcnc = 0.01;
+
+	if (FeedBack == HIGH_RATE_FEEDBACK)
+		cnts *= HIGH_RATE;
+
+	concn	= cnts * DIV / (fcnc * 1000.0 / 60.0);
+
+	/* Particle concentration corrected for coincidence
+	 * 4.167E-6 is time in view volume (.25 microseconds)
+	 * conversion factor for FCNC to cm3/s.
+	 */
+	concn *= (NR_TYPE)exp((double)(4.167e-6 * concn * fcnc));
+
+	/* form sum of current cnts plus last two samples.  This will
+	 * provide some output in case of low counts
+	 */
+	cntsm = cnts + cntold + cntolder;
+	cntolder = cntold;
+	cntold = cnts;
+
+	PutSample(varp, concn);
+
+}	/* END SCONCN */
+
+/* -------------------------------------------------------------------- */
+void sfcnc(varp)
+DERTBL	*varp;
+{
+	PutSample(varp, fcnc);
+}
+
+/* -------------------------------------------------------------------- */
+void sxicnc(varp)
+DERTBL	*varp;
+{
+	PutSample(varp, xicnc);
+}
+
+/* -------------------------------------------------------------------- */
+void scntsm(varp)
+DERTBL	*varp;
+{
+	PutSample(varp, cntsm);
+}
+
+/* END CNCTR.C */

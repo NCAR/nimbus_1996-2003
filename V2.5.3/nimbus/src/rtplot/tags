@@ -1,0 +1,59 @@
+AddDataToBuffer	dataIO.c	/^void AddDataToBuffer(newData)$/
+AddVariable	dataIO.c	/^void AddVariable(indx)$/
+AllocateDataArrays	memalloc.c	/^void AllocateDataArrays()$/
+ApplyParms	Xdialog.c	/^ApplyParms(w, clientData, callData)$/
+AutoScale	autoscale.c	/^void AutoScale(axis)$/
+CreateMainWindow	Xwin.c	/^Widget CreateMainWindow(parent)$/
+CreateParmsWindow	Xdialog.c	/^CreateParmsWindow(parent)$/
+DecodeHeader	hdr_decode.c	/^int DecodeHeader(char header_file[])$/
+DecodeRecord	rec_decode.c	/^void DecodeRecord()$/
+DeleteVariable	dataIO.c	/^void DeleteVariable(indx)$/
+DismissParmsWindow	Xdialog.c	/^DismissParmsWindow(w, clientData, callData)$/
+DoAutoScale	ccb.c	/^void DoAutoScale(Widget w, XtPointer client, XtPoi/
+EditParms	Xdialog.c	/^EditParms(w, clientData, callData)$/
+FlushXEvents	Xwin.c	/^void FlushXEvents()$/
+FreeDataArrays	memalloc.c	/^void FreeDataArrays()$/
+Freeze	ccb.c	/^void Freeze(Widget w, XtPointer client, XtPointer /
+GetComputeHost	misc.c	/^char *GetComputeHost()$/
+GetData	dataIO.c	/^NR_TYPE GetData(set, indx)$/
+GetDefaultsValue	init.c	/^NR_TYPE GetDefaultsValue()$/
+HandleError	error.c	/^void HandleError(s, interactiv, status)$/
+Initialize	init.c	/^void Initialize()$/
+LogMessage	Xwin.c	/^void LogMessage(msg)$/
+MakeTicLabel	misc.c	/^MakeTicLabel(buffer, diff, value)$/
+ModifyActiveVars	ccb.c	/^void ModifyActiveVars(Widget w, XtPointer client, /
+Mrtplot	rtplot.c	/^main(argc, argv)$/
+OpenSocket	rtloop.c	/^static void OpenSocket(int sockNum)	\/* Only readin/
+PlotData	Xplot.c	/^void PlotData(w, client, call)$/
+PlotLines	Xplot.c	/^void PlotLines()$/
+Quit	ccb.c	/^void Quit(Widget w, XtPointer client, XtPointer ca/
+RealTimeLoop	rtloop.c	/^void RealTimeLoop()$/
+ResizePlotWindow	Xplot.c	/^void ResizePlotWindow(Widget w, XtPointer client, /
+RoundBig	autoscale.c	/^static NR_TYPE RoundBig(x, round)$/
+SearchDERIVEFTNS	amlibfn.c	/^SearchDERIVEFTNS(char target[])$/
+SetLookupSuffix	amlibfn.c	/^void SetLookupSuffix(char *new_suffix)$/
+SetReadData	Xdialog.c	/^SetReadData(w, clientData, callData)$/
+SetYLabelPixmap	Xplot.c	/^SetYLabelPixmap()$/
+SetYdialog	Xdialog.c	/^SetYdialog()$/
+ToggleFlash	ccb.c	/^void ToggleFlash(Widget w, XtPointer client, XtPoi/
+ToggleGrid	ccb.c	/^void ToggleGrid(Widget w, XtPointer client, XtPoin/
+ToggleUnits	ccb.c	/^void ToggleUnits(Widget w, XtPointer client, XtPoi/
+ValidateFloat	Xdialog.c	/^ValidateFloat(w, client, call)$/
+ValidateTime	Xdialog.c	/^ValidateTime(w, client, call)$/
+WaitForNextLogicalRecord	rtloop.c	/^static int WaitForNextLogicalRecord(char dest[], i/
+YLEGEND	Xplot.c	/^#define YLEGEND(s)      (windowHeight-10-(s*12))$/
+add_file_to_RAWTBL	hdr_decode.c	/^static void add_file_to_RAWTBL(filename)$/
+add_name_to_RAWTBL	hdr_decode.c	/^static RAWTBL *add_name_to_RAWTBL(name)$/
+angcr	dataIO.c	/^NR_TYPE angcr(angle2, angle1, syncro_range, amin)$/
+check_cal_coes	hdr_decode.c	/^check_cal_coes(order, coef)$/
+do_ytics	Xplot.c	/^static void do_ytics(dpy, win, gc, font_info)$/
+expt	autoscale.c	/^static NR_TYPE expt(a, n)$/
+for	Xplot.c	/^	for (CurrentDataSet = 0; CurrentDataSet < NumberD/
+in_hdr	hdr_decode.c	/^static void in_hdr(vn)$/
+in_ins	hdr_decode.c	/^static void in_ins(vn)$/
+in_irs	hdr_decode.c	/^static void in_irs(vn)$/
+in_ophir3	hdr_decode.c	/^static void in_ophir3(vn)$/
+in_sdi	hdr_decode.c	/^static void in_sdi(vn)$/
+process_args	init.c	/^void process_args(argv)$/
+scaleaxis	autoscale.c	/^static void scaleaxis(min, max)$/
+set_clipping	Xplot.c	/^static void set_clipping(dpy, gc)$/

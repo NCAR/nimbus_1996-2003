@@ -1,0 +1,5 @@
+pr	25
+if	/home/data/110rf03.ads
+of	/home/data/cjwOld.cdf
+sf	/home/users/chris/nimbus/filterTest
+ti	23:00:00 - 23:30:00

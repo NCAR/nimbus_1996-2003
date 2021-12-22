@@ -1,0 +1,211 @@
+.na
+.nh
+.TH NCPLOT 1 "June 1995" "Local Command"
+.SH NAME
+ncplot \- Plot netCDF data
+.SH SYNOPSIS
+.B ncplot
+[
+.B\-f
+.I output_file
+] [
+.B\-h
+] [
+.B\-p
+.I parameter_file
+] [
+.B
+.I data_file
+]
+.SH DESCRIPTION
+.B ncplot 
+is an interactive netCDF data plotting tool for workstations running X11/R5
+Motif 1.2.  A few of its features are:
+.PP
+.IP \(bu 
+Plots up to 8 datasets per graph.
+.IP \(bu
+Allows user-defined scaling, labels, symbols.
+.IP \(bu
+Offers batch mode for unattended plotting.
+.IP \(bu
+Provides reading and writing of parameter files during a session.
+.IP \(bu
+Supports PostScript printers.
+.PP
+.SH OPTIONS
+.IP \fB\-h\fP
+Don't run interactive, just print a hardcopy and quit (used in batch mode).
+.IP \fB\-f\fP\ \fIoutput_file\fP
+Write the PostScript output to file
+.I output_file
+rather than to a printer.  Used in conjunction with batch mode (
+.B -h
+).  Otherwise it is ignored.
+.IP \fB\-p\fP\ \fIpararameter_file\fP
+Read the parameter file 
+.I parameter_file.
+.IP \fIdata_file\fP
+netCDF data file that conforms to the NCAR-RAF conventions.
+ncplot also uses an environment variable called DATA_DIR as a
+default place to locate data files.
+.LP
+.PP
+.SH GUIDE TO MENUS
+.br
+.sp 2
+
+.SH File Menu
+.PP
+The items in the File menu allow the reading of data files from disk,
+reading and writing of parameter files, and the output of the graph
+to a file or printer.
+
+In the case of an operation that will overwrite an existing file,
+you will be prompted by an alert that allows you to abort the
+write if you don't want the file to be overwritten.
+.PP
+.B New Data File
+.PP
+This displays a File Selection Box to select a file to read.  There
+is no error checking to see if the input file is valid.  Invalid files
+tend to cause a segmentation fault.  After reading a new data file,
+it may be necessary to "Autoscale" the axes; this is in the operations menu.
+.PP
+.B Read parameter file
+.PP
+This diplays a File Selection Box asking for a Parameter File to
+read.  Parameter files can have the following keywords:
+.PP
+.IP
+.br
+title=
+.br
+subtitle=
+.br
+xlabel=
+.br
+ylabel=
+.br
+xmin=
+.br
+xmax=
+.br
+ymin=
+.br
+ymax=
+.br
+legend=
+.PP
+All of these keywords are optional except xmin, xmax (defines time segment)
+and legend, which define desired variables.  If ymin and ymax are missing,
+.B ncplot
+will autoscale that axis.  Extraneous keywords or lines are ignored.
+To generate an example parameter file, run
+.B ncplot,
+Edit Parameters, and then Save Parameter file.
+
+.PP
+.B Write parameter file
+.PP
+A File Selection Box prompts for the name of the file where you want to
+write the parameters.  If the file exists, the program asks for your
+permission to overwrite it.
+.PP
+.B Save PostScript
+.PP
+This displays a File Selection Box prompting for the name of the file
+where you want to write the PostScript output.
+.TP 10
+.B Print
+.PP
+This opens a pipe and sends PostScript commands to
+.B lpr(1).
+.PP
+.ps +2
+.SH Edit Menu
+.ps -2
+.PP
+.B Edit Parameters
+.PP
+This pops up a window showing all the valid parameter file keywords
+and their current values.  Editing may be performed on any of the
+fields.
+.PP
+.B Scale Y Axis
+.PP
+This rescales the Y axis according to numbers the program considers
+appropriate.  These can then be changed via "Edit Parameters".
+.PP
+.B Toggle Grid
+.PP
+This places/removes a grid from the plot frame.
+.PP
+.B Toggle Auto Scaling On/Off
+.PP
+By default ncplot performs auto scaling when ever Page Forward, Page
+Backward, or the time is changed through the Edit Parameteres window.
+This toggle will disable/enable autoscaling.
+
+.SH EXAMPLES
+
+.PP
+Run with no command line parameters:
+.br
+.in +.5i
+1% ncplot
+.in -.5i
+.PP
+Read a single data file, autoscale axes, and use default settings:
+.in +.5i
+.br
+2% ncplot 817RF15.cdf
+.in -.5i
+.PP
+Read a single data file and use plot parameters previously saved in the file 
+"test.par":
+.in +.5i
+.br
+3% ncplot 817RF15.cdf -p test.par
+.in -.5i
+.PP
+Read a data file and parameter file "test.par", and only print
+(non-interactive):
+.in +.5i
+.br
+5% ncplot -h -p test2.par 817RF15.cdf
+.in -.5i
+.PP
+Read a data file and parameter file "test.par", and save the
+ouput in test.ps (non-interactive):
+.in +.5i
+.br
+6% ncplot -h -f test.ps -p test2.par 817RF15.cdf
+.in -.5i
+
+.SH Example Parameter File
+.PP
+title=FSSP Concentrations
+.br
+subtitle=Toga-Coare Flight #15
+.br
+xlabel=Time
+.br
+ylabel=Concentrations
+.br
+legend=FACT_IBR,CONCF_IBR
+.br
+xmin=12:02:00
+.br
+xmax=12:10:00
+.br
+ymin=0
+.br
+ymax=100
+.PP
+.SH BUGS
+.PP
+Invalid data files will cause a core dump.  Bar graphs do not show legend
+or perform bar shading on screen, these features do work to the printer.
+.SH AUTHOR
+Chris Webster, National Center for Atmospheric Research

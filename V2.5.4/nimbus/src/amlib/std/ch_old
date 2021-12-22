@@ -1,0 +1,13 @@
+#! /bin/csh -f
+ ln old_cnctr.c cnctr.c
+ ln old_con2c.c con2c.c
+ ln old_con2p.c con2p.c
+ ln old_deni.c deni.c
+ ln old_flux.c flux.c
+ ln old_palt.c palt.c
+ ln old_plwcc.c plwcc.c
+ ln old_psurf.c psurf.c
+ ln old_radc.c radc.c
+ ln old_rhola.c rhola.c
+ ln old_xrlwcc.c xrlwcc.c
+exit

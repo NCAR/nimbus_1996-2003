@@ -1,0 +1,38 @@
+.na
+.nh
+.TH NCAV 1 "01 December 1994" "Local Command"
+.SH NAME
+ncav \- netCDF average utility
+.SH SYNOPSIS
+.B ncav [-r AveRate] [-b batchFile]
+.SH DESCRIPTION
+.B ncav 
+is a program for averageing netCDF data to less than 1 sample per second.
+.B AveRate
+may be any integer value greater than 1, representing the number if
+seconds to reduce to.  ncav provides a GUI similar to nimbus, where you may
+choose which variables to output.  To change the "output" of a variable,
+just double click on the variable.  You may also select many and then use
+CTRL-O to toggle them all at once.
+.PP
+By default ncav uses 10 as its AverageRate.  The default
+may be changed in the command line with the -r option.  
+.PP
+ncav supports batch files.  This is useful if you want to dump many files
+with the same setup.  A sample batch file follows (note all variables will
+be averaged, if no "var=" statements are found in the batchfile):
+.PP
+.nf
+if=/home/data/231RF10.cdf
+of=junk.asc
+ti=09:00:00-09:05:00
+.f
+.PP
+.SH EXAMPLE:
+.PP
+To change the default rate:
+.PP
+1024% ncav -r 5
+.PP
+.SH AUTHOR
+Chris Webster, National Center for Atmospheric Research

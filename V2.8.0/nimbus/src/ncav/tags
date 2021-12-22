@@ -1,0 +1,43 @@
+Average	netcdf.c	/^static void Average(NR_TYPE *data, long count[])$/
+CancelSetup	cb_main.c	/^void CancelSetup(Widget w, XtPointer client, XtPoi/
+CloseNetCDF	netcdf.c	/^void CloseNetCDF()$/
+CreateListLineItem	cb_main.c	/^XmString CreateListLineItem(VARTBL *vp)$/
+CreateMainWindow	Xwin.c	/^Widget CreateMainWindow(parent)$/
+CreateNetCDF	netcdf.c	/^void CreateNetCDF(char file_name[])$/
+CreatePauseWindows	cb_pause.c	/^void CreatePauseWindows(topLevel)$/
+CreateSetupWindow	Xwin.c	/^Widget CreateSetupWindow(parent)$/
+CreateTimeSliceWindow	Xwin.c	/^Widget CreateTimeSliceWindow(parent)$/
+DismissTimeSliceWindow	cb_time.c	/^DismissTimeSliceWindow(w, client, call)$/
+EditTimeSlices	cb_time.c	/^EditTimeSlices(w, client, call)$/
+FillListWidget	cb_main.c	/^static void FillListWidget()$/
+FlushXEvents	Xwin.c	/^void FlushXEvents()$/
+FormatTimeSegmentsForOutputFile	timeseg.c	/^void FormatTimeSegmentsForOutputFile(buff)$/
+GetUserTimeIntervals	timeseg.c	/^void GetUserTimeIntervals() \/* From TimeSliceWindo/
+HandleError	error.c	/^void HandleError(char err_msg[])$/
+HandleWarning	error.c	/^void HandleWarning(char msg[], void (*callBack)())/
+Initialize	init.c	/^void Initialize()$/
+LogMessage	cb_main.c	/^void LogMessage(char msg[])$/
+Mncav	ncav.c	/^int main(argc, argv)$/
+NextTimeInterval	timeseg.c	/^int NextTimeInterval(start, end)$/
+PassThroughData	netcdf.c	/^void PassThroughData(start, end)$/
+PauseContinue	cb_pause.c	/^PauseContinue(Widget w, XtPointer client, XtPointe/
+PauseProcessing	cb_pause.c	/^PauseProcessing(Widget w, XtPointer client, XtPoin/
+PauseStop	cb_pause.c	/^PauseStop(Widget w, XtPointer client, XtPointer ca/
+PauseXTV	cb_pause.c	/^PauseXTV(Widget w, XtPointer client, XtPointer cal/
+Proceed	cb_main.c	/^void Proceed(Widget w, XtPointer client, XtPointer/
+ProcessArgv	init.c	/^void ProcessArgv(int argc, char **argv)$/
+Quit	cb_main.c	/^void Quit(Widget w, XtPointer client, XtPointer ca/
+ReadBatchFile	init.c	/^void ReadBatchFile(char file[])$/
+ReadHeader	cb_main.c	/^void ReadHeader(Widget w, XtPointer client, XtPoin/
+ReadInputFile	netcdf.c	/^int ReadInputFile(char fileName[])$/
+ResetTimeSliceWindow	cb_time.c	/^ResetTimeSliceWindow(Widget w, XtPointer client, X/
+SearchTable	search.c	/^int SearchTable(char *table[], int ntable, char ta/
+SetBaseTime	netcdf.c	/^void SetBaseTime()$/
+SortTable	sort.c	/^void SortTable(char **table, int beg, int end)$/
+StartProcessing	cb_main.c	/^void StartProcessing(Widget w, XtPointer client, X/
+StopProcessing	cb_main.c	/^void StopProcessing()$/
+ToggleOutput	cb_main.c	/^void ToggleOutput(Widget w, XtPointer client, XtPo/
+ValidateFileNames	cb_main.c	/^static int ValidateFileNames()$/
+ValidateTime	cb_time.c	/^ValidateTime(w, client, call)$/
+WarnUser	error.c	/^void WarnUser(char str[], void (*okCB)(), void (*c/
+sort_the_table	sort.c	/^static void sort_the_table(beg, end)$/

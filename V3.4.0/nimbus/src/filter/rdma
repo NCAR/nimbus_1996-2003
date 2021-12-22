@@ -1,0 +1,4 @@
+#!/bin/csh
+
+rm ../../rdma/dma/inv/output/mat_1/*
+./nimbus

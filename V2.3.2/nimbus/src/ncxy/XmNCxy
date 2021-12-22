@@ -1,0 +1,149 @@
+*defaultFontList:	-adobe-courier-bold-r-*-*-14-140-75-75-*-*-*-*
+*titleFont:		-adobe-courier-bold-r-*-*-24-240-75-75-*-*-*-*
+*subtitleFont:		-adobe-courier-bold-r-*-*-18-180-75-75-*-*-*-*
+*ticFont:		-adobe-courier-bold-r-*-*-12-120-75-75-*-*-*-*
+!
+*parmsRC*fontList:	-adobe-courier-bold-r-*-*-12-120-75-75-*-*-*-*
+*varListX*fontList:	-adobe-courier-bold-r-*-*-12-120-75-75-*-*-*-*
+*varListY*fontList:	-adobe-courier-bold-r-*-*-12-120-75-75-*-*-*-*
+!
+*XmPushButton.height:			32
+*XmTextField.background:		Burlywood
+*XmTextField.foreground:		black
+*XmForm.horizontalSpacing:		6
+*XmForm.verticalSpacing:		6
+*topLevelShell.title:			ncxy 1.3
+*topLevelShell.iconName:		ncxy
+*buttonFrame.shadowType:		SHADOW_IN
+*buttonRC.XmPushButton.recomputeSize:	False
+*buttonRC.XmPushButton.width:		130
+*buttonRC.entryAlignment:		ALIGNMENT_CENTER
+*buttonRC.isAligned:			True
+*buttonRC.orientation:			HORIZONTAL
+!
+*canvas.background:			grey
+*canvas.height:				700
+*canvas.width:				700
+!
+*varListX.background:			black
+*varListX.foreground:			green
+*varListX.scrollBarDisplayPolicy:	STATIC
+*varListX.width:			100
+*varListY.background:			black
+*varListY.foreground:			green
+*varListY.scrollBarDisplayPolicy:	STATIC
+*varListY.width:			100
+!
+*pgButtRC.entryAlignment:		ALIGNMENT_CENTER
+*pgButtRC.orientation:			VERTICAL
+*pageFwd.labelString:			Page Fwd
+*pageBkd.labelString:			Page Bkd
+!
+ncxy*editShell.title:				Edit Parameters
+ncxy*parmsForm.horizontalSpacing:		8
+ncxy*parmsForm.verticalSpacing:			8
+ncxy*parmsForm*buttonRC.spacing:		39
+ncxy*parmsRC*XmForm.horizontalSpacing:		5
+ncxy*parmsRC*XmLabel.alignment:			ALIGNMENT_END
+ncxy*parmsRC*XmLabel.recomputeSize:		False
+ncxy*parmsRC*XmLabel.height:			32
+ncxy*parmsRC*XmLabel.width:			120
+ncxy*menuBar*newData.labelString:		New Data File
+ncxy*menuBar*newData.mnemonic:			N
+ncxy*menuBar*newData.accelerator:		Ctrl<Key>N
+ncxy*menuBar*newData.acceleratorText:		Ctrl-N
+ncxy*menuBar*readParms.labelString:		Read Parms File
+ncxy*menuBar*readParms.mnemonic:		R
+ncxy*menuBar*readParms.accelerator:		Ctrl<Key>R
+ncxy*menuBar*readParms.acceleratorText:		Ctrl-R
+ncxy*menuBar*writeParms.labelString:		Write Parms File
+ncxy*menuBar*writeParms.mnemonic:		W
+ncxy*menuBar*writeParms.accelerator:		Ctrl<Key>W
+ncxy*menuBar*writeParms.acceleratorText:	Ctrl-W
+ncxy*menuBar*savePS.labelString:		Save PostScript
+ncxy*menuBar*savePS.mnemonic:			S
+ncxy*menuBar*savePS.accelerator:		Ctrl<Key>S
+ncxy*menuBar*savePS.acceleratorText:		Ctrl-S
+ncxy*menuBar*print.labelString:			Print
+ncxy*menuBar*print.mnemonic:			P
+ncxy*menuBar*print.accelerator:			Ctrl<Key>P
+ncxy*menuBar*print.acceleratorText:		Ctrl-P
+ncxy*menuBar*quit.labelString:			Quit
+ncxy*menuBar*quit.mnemonic:			Q
+ncxy*menuBar*quit.accelerator:			Ctrl<Key>Q
+ncxy*menuBar*quit.acceleratorText:		Ctrl-Q
+ncxy*menuBar*editParms.labelString:		Edit Parameters
+ncxy*menuBar*editParms.mnemonic:		E
+ncxy*menuBar*editParms.accelerator:		Ctrl<Key>E
+ncxy*menuBar*editParms.acceleratorText:		Ctrl-E
+ncxy*menuBar*autoScale.labelString:		Scale Axies
+ncxy*menuBar*autoScale.mnemonic:		A
+ncxy*menuBar*autoScale.accelerator:		Ctrl<Key>A
+ncxy*menuBar*autoScale.acceleratorText:		Ctrl-A
+ncxy*menuBar*toggleGrid.labelString:		Toggle Grid
+ncxy*menuBar*toggleGrid.mnemonic:		G
+ncxy*menuBar*toggleGrid.accelerator:		Ctrl<Key>G
+ncxy*menuBar*toggleGrid.acceleratorText:	Ctrl-G
+ncxy*menuBar*toggleScatter.labelString:		Toggle Scatter Plot
+ncxy*menuBar*toggleWindBarb.labelString:	Toggle Wind Barbs
+ncxy*menuBar*toggleWindBarb.mnemonic:		B
+ncxy*menuBar*toggleWindBarb.accelerator:	Ctrl<Key>B
+ncxy*menuBar*toggleWindBarb.acceleratorText:	Ctrl-B
+ncxy*parmsRC*lbl0.labelString:			Title
+ncxy*parmsRC*txt0.columns:			40
+ncxy*parmsRC*txt0.maxLength:			40
+ncxy*parmsRC*lbl1.labelString:			Subtitle
+ncxy*parmsRC*txt1.columns:			40
+ncxy*parmsRC*txt1.maxLength:			40
+ncxy*parmsRC*lbl2.labelString:			X label
+ncxy*parmsRC*txt2.columns:			40
+ncxy*parmsRC*txt2.maxLength:			40
+ncxy*parmsRC*lbl3.labelString:			Y label
+ncxy*parmsRC*txt3.columns:			40
+ncxy*parmsRC*txt3.maxLength:			40
+ncxy*parmsRC*lbl4.labelString:			Start time
+ncxy*parmsRC*txt4.columns:			16
+ncxy*parmsRC*txt4.maxLength:			16
+ncxy*parmsRC*lbl5.labelString:			End Time
+ncxy*parmsRC*txt5.columns:			16
+ncxy*parmsRC*txt5.maxLength:			16
+ncxy*parmsRC*lbl6.labelString:			X min
+ncxy*parmsRC*txt6.columns:			16
+ncxy*parmsRC*txt6.maxLength:			16
+ncxy*parmsRC*lbl7.labelString:			X max
+ncxy*parmsRC*txt7.columns:			16
+ncxy*parmsRC*txt7.maxLength:			16
+ncxy*parmsRC*lbl8.labelString:			Y min
+ncxy*parmsRC*txt8.columns:			16
+ncxy*parmsRC*txt8.maxLength:			16
+ncxy*parmsRC*lbl9.labelString:			Y max
+ncxy*parmsRC*txt9.columns:			16
+ncxy*parmsRC*txt9.maxLength:			16
+!
+*applyButton.labelString:			Apply
+*resetButton.labelString:			Reset
+*dismissButton.labelString:			Dismiss
+!
+!       Dialog Boxes
+!
+ncxy*fileBox.defaultPosition:                 FALSE
+ncxy*fileBox.x:                               130
+ncxy*fileBox.y:                               200
+ncxy*fileBox*textColumns:                     50
+ncxy*fileBox*dialogTitle:                     Select a File
+ncxy*errorBox.defaultPosition:                FALSE
+ncxy*errorBox.x:                              450
+ncxy*errorBox.y:                              100
+ncxy*errorBox*background:                     DarkSlateGray
+ncxy*errorBox*dialogTitle:                    Error Message
+ncxy*errorBox*foreground:                     Red
+ncxy*errorBox*XmLabel.alignment:              ALIGNMENT_CENTER
+ncxy*queryBox*dialogTitle:                    Need input
+ncxy*queryBox*alignment:                      ALIGNMENT_CENTER
+ncxy*warnBox.defaultPosition:                 FALSE
+ncxy*warnBox.x:                               450
+ncxy*warnBox.y:                               100
+ncxy*warnBox*background:                      DarkSlateGray
+ncxy*warnBox*dialogTitle:                     Warning Message
+ncxy*warnBox*foreground:                      Yellow
+ncxy*warnBox*XmLabel.alignment:               ALIGNMENT_CENTER

@@ -1,0 +1,24 @@
+/* FSSP housekeeping indices    */
+#define FSTB    0
+#define FRST    1
+#define FACT    2
+#define FSST    3
+#define FTMP    4
+#define FANV    5
+#define FSIG    6
+#define FREF    7
+ 
+/* PCASP houskeeping indices    */
+#define PACT    0
+#define PSTT    1
+#define PTMP    4
+#define PREF    5
+#define PFLW    6
+#define PBRS    7
+ 
+/* 260X houskeeping indices     */
+#define P6RST   0
+#define P6TMP   4
+#define P6E01   5
+#define P6E64   6
+

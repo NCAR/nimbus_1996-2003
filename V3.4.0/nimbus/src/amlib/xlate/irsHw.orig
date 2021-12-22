@@ -1,0 +1,395 @@
+/*
+-------------------------------------------------------------------------
+OBJECT NAME:	irsHw.c
+
+FULL NAME:	Convert IRS block data
+
+ENTRY POINTS:	xlilat(), xlilon(), xlipitch(), xliroll(), xlithdg(),
+		xligspd(), xlvacc(), xlivspd(), xlivns(), xlivew(),
+		xllag50(), xllag25(), xllag10(), xllag5(), xlialt()
+
+DESCRIPTION:	
+
+INPUT:		
+
+OUTPUT:		
+
+REFERENCES:	none
+
+REFERENCED BY:	rec_decode.c
+
+COPYRIGHT:	University Corporation for Atmospheric Research, 1992
+-------------------------------------------------------------------------
+*/
+
+#include "nimbus.h"
+#include "amlib.h"
+
+
+static const double	arinc20bits = (1.0 / (1 << 20)) * 180.0;
+static const double	arinc15bits = (1.0 / (1 << 15));
+
+static NR_TYPE thdglcorr;	/* irs box alignment correction	*/
+static NR_TYPE thdgrcorr;	/* irs box alignment correction	*/
+static NR_TYPE pitchrcorr;	/* irs box alignment correction	*/
+static NR_TYPE pitchlcorr;	/* irs box alignment correction	*/
+
+
+/* -------------------------------------------------------------------- */
+void irsInit(RAWTBL *varp)
+{
+	thdglcorr = (GetDefaultsValue("HEADING_BIAS_1"))[0];
+	thdgrcorr = (GetDefaultsValue("HEADING_BIAS_2"))[0];
+	pitchlcorr = (GetDefaultsValue("PITCH_BIAS_1"))[0];
+	pitchrcorr = (GetDefaultsValue("PITCH_BIAS_2"))[0];
+
+}	/* END IRSINIT */
+
+/* -------------------------------------------------------------------- */
+void xlilat(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* (degs) 20 bits, +- 0.5 pirad, label 310	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (double)(p->present_lat[i] >> 11) * arinc20bits;
+
+	varp->DynamicLag = p->lag_5hz_frame;
+
+}	/* END XLILAT */
+
+/* -------------------------------------------------------------------- */
+void xlilon(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* (degs) 20 bits, +- 0.5 pirad, label 311	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (double)(p->present_lon[i] >> 11) * arinc20bits;
+
+	varp->DynamicLag = p->lag_5hz_frame;
+
+}	/* END XLILON */
+
+/* -------------------------------------------------------------------- */
+void xlipitch(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+	float	correction;
+
+	if (varp->name[5] != '\0')
+		correction = pitchrcorr;
+	else
+		correction = pitchlcorr;
+
+	/* (degs) 20 bits, +- 0.5 pirad, label 324	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (double)(p->pitch_angle[i] >> 11) * arinc20bits +
+			correction;
+
+	varp->DynamicLag = p->lag_50hz_frame;
+
+}	/* END XLIPITCH */
+
+/* -------------------------------------------------------------------- */
+void xliroll(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* (degs) 20 bits, +- 0.5 pirad, label 325	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (double)(p->roll_angle[i] >> 11) * arinc20bits;
+
+	varp->DynamicLag = p->lag_50hz_frame;
+
+}	/* END XLIROLL */
+
+/* -------------------------------------------------------------------- */
+void xlithdg(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+	float	correction;
+
+	if (varp->name[4] != '\0')
+		correction = thdgrcorr;
+	else
+		correction = thdglcorr;
+
+
+	/* (degs) 20 bits, +- 0.5 pirad, label 314	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		{
+		np[i] = (double)(p->true_heading[i] >> 11) * arinc20bits +
+			correction;
+
+		if (np[i] < 0.0)
+			np[i] += 360.0;
+
+		if (np[i] > 360.0)
+			np[i] -= 360.0;
+		}
+
+	varp->DynamicLag = p->lag_25hz_frame;
+
+}	/* END XLITHDG */
+
+/* -------------------------------------------------------------------- */
+void xlialt(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* (degs) 20 bits, +- 0.5 pirad, label 361	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (NR_TYPE)(p->inertial_alt[i] >> 11) * 0.125 * FTMTR;
+
+	varp->DynamicLag = p->lag_25hz_frame;
+
+}	/* END XLIALT */
+
+/* -------------------------------------------------------------------- */
+void xlivspd(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* (degs) 20 bits, +- 0.5 pirad, label 365	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (NR_TYPE)(p->inrt_vert_speed[i] >> 11) * 0.03125 *FTMIN;
+
+	varp->DynamicLag = p->lag_25hz_frame;
+
+}	/* END XLIVSPD */
+
+/* -------------------------------------------------------------------- */
+void xlvacc(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* (G) 15 bits, +- 4.0 kts, label 364	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (NR_TYPE)(p->vertical_accel[i] >> 16) * 1.22e-04 * MPS2;
+
+	varp->DynamicLag = p->lag_50hz_frame;
+
+}	/* END XLVACC */
+
+/* -------------------------------------------------------------------- */
+void xlivew(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* 20 bits, +-4095 kts, label 367	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (double)(p->velocity_ew[i] >> 11) * 0.00390625 * KTS2MS;
+
+	varp->DynamicLag = p->lag_10hz_frame;
+
+}	/* END XLIVEW */
+
+/* -------------------------------------------------------------------- */
+void xlivns(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* 20 bits, +-4095 kts, label 366	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (double)(p->velocity_ns[i] >> 11) * 0.00390625 * KTS2MS;
+
+	varp->DynamicLag = p->lag_10hz_frame;
+
+}	/* END XLIVNS */
+
+/* -------------------------------------------------------------------- */
+void xligspd(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* 20 bits, 0 to 4095 kts, label 312	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (double)(p->ground_speed[i] >> 11) * 0.00390625 * KTS2MS;
+
+	varp->DynamicLag = p->lag_10hz_frame;
+
+}	/* END XLIGSPD */
+
+/* -------------------------------------------------------------------- */
+void xllag50(RAWTBL *varp, void *p, NR_TYPE *np)
+{
+	*np = (NR_TYPE)((Irs_blk *)p)->lag_50hz_frame;
+
+}	/* END XLLAG50 */
+
+/* -------------------------------------------------------------------- */
+void xllag25(RAWTBL *varp, void *p, NR_TYPE *np)
+{
+	*np = (NR_TYPE)((Irs_blk *)p)->lag_25hz_frame;
+
+}	/* END XLLAG25 */
+
+/* -------------------------------------------------------------------- */
+void xllag10(RAWTBL *varp, void *p, NR_TYPE *np)
+{
+	*np = (NR_TYPE)((Irs_blk *)p)->lag_10hz_frame;
+
+}	/* END XLLAG10 */
+
+/* -------------------------------------------------------------------- */
+void xllag5(RAWTBL *varp, void *p, NR_TYPE *np)
+{
+	*np = (NR_TYPE)((Irs_blk *)p)->lag_5hz_frame;
+
+}	/* END XLLAG5 */
+
+/* -------------------------------------------------------------------- */
+void xlbrollr(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (NR_TYPE)(p->roll_rate[i] >> 16) * 0.0039;
+
+	varp->DynamicLag = p->lag_50hz_frame;
+
+}	/* END XLBROLLR */
+
+/* -------------------------------------------------------------------- */
+void xlbpitchr(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (NR_TYPE)(p->pitch_rate[i] >> 16) * 0.0039;
+
+	varp->DynamicLag = p->lag_50hz_frame;
+
+}	/* END XLBPITCHR */
+
+/* -------------------------------------------------------------------- */
+void xlbyawr(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i, x;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (NR_TYPE)(p->yaw_rate[i] >> 16) * 0.0039;
+
+	varp->DynamicLag = p->lag_50hz_frame;
+
+}	/* END XLBYAWR */
+
+/* -------------------------------------------------------------------- */
+void xlblata(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (NR_TYPE)(p->lat_accel[i] >> 16) * 1.22e-4 * MPS2;
+
+	varp->DynamicLag = p->lag_50hz_frame;
+
+}	/* END XLBLATA */
+
+/* -------------------------------------------------------------------- */
+void xlblona(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (NR_TYPE)(p->long_accel[i] >> 16) * 1.22e-4 * MPS2;
+
+	varp->DynamicLag = p->lag_50hz_frame;
+
+}	/* END XLBLONA */
+
+/* -------------------------------------------------------------------- */
+void xlbnorma(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (NR_TYPE)(p->normal_accel[i] >> 16) * 1.22e-4 * MPS2;
+
+	varp->DynamicLag = p->lag_50hz_frame;
+
+}	/* END XLBNORMA */
+
+/* -------------------------------------------------------------------- */
+void xlitrkart(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* (degs) 20 bits, +- 32.0 Deg/S, label 335	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (double)(p->track_ang_rate[i] >> 11) * 3.05e-05;
+
+	varp->DynamicLag = p->lag_50hz_frame;
+
+}	/* END XLITRKART */
+
+/* -------------------------------------------------------------------- */
+void xlittrka(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* (degs) 20 bits, +- 1.0 pirad, label 313	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		{
+		np[i] = (double)(p->track_angle_true[i] >> 11) * arinc20bits;
+
+		if (np[i] < 0.0)
+			np[i] += 360.0;
+
+		if (np[i] > 360.0)
+			np[i] -= 360.0;
+		}
+
+	varp->DynamicLag = p->lag_25hz_frame;
+
+}	/* END XLITTRKA */
+
+/* -------------------------------------------------------------------- */
+void xlidrift(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+	int	i;
+	Irs_blk	*p = (Irs_blk *)input;
+
+	/* (degs) 20 bits, +- 0.5 pirad, label 321	*/
+
+	for (i = 0; i < varp->SampleRate; ++i)
+		np[i] = (double)(p->drift_angle[i] >> 11) * arinc20bits;
+
+	varp->DynamicLag = p->lag_25hz_frame;
+
+}	/* END XLIDRFTA */
+
+/* END IRSHW.C */

@@ -1,0 +1,11 @@
+260x.c, fssp.c, f300.c, asas.c: routines for each specific probe.  The 1st
+	function in each file is an initialization function, the 2nd one
+	does the calculation, and is called once per sample (once per second
+	for LRT, and 10 times a second for HRT).
+
+pms1d_cv:	This file is included by the above files to perform the part
+		of the calculations that is the same for each probe.
+
+pms1d.c:	routines for depth of field for 260x.  These are D. Baumgardner
+		specials.
+

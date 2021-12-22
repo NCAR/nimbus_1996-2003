@@ -1,0 +1,179 @@
+/*  	Ophir 3 radiometer                      */
+#include <math.h>
+#include "nimbus.h"
+#include "decode.h"
+
+#define h               6.626176e-34	/* Planck's const, J-s	*/
+#define k               1.380662e-23	/* Boltzman's const, J/K */
+#define lam             4.25e-6		/* Wavelength, um	*/
+#define TZERO           273.16
+#define c               2.99792458e8	/* Speed of light, m/s	*/
+#define PI              M_PI		/* define in math.h	*/
+
+extern float	MAXCNT, THERM_BIAS, THERM_RZ, THERM_COEFF, DFLT_GAIN,
+		DFLT_OFFSET, A1, A2;
+
+double  planck_rad();
+double  planck_t();
+double  therm();
+
+extern short int *indata;
+extern unsigned short int *bitdata;
+
+struct Oph3_blk *oph;
+
+static float otdetc,odsigc,obbcr,ogainf,odetof;
+float oat;
+
+double  gain, gain_factor, bbrad, av_detofset,
+        av_detdc, av_bbctem, av_bbhtem,
+        av_bbcsig, av_bbhsig;
+double  sum_bbctem, sum_bbhtem, sum_detofset,
+        sum_bbcsig, sum_bbhsig, sum_detdc;
+double  bbctem_k, bbcrad, bbhtem_k, bbhrad, detdc_v;
+
+int 	nbbc, nbbh, nofset;
+unsigned convert;
+int	sbb;
+float	detdc,detem,bbctem,detsig;
+float	idetsig,idetem;
+
+/* -------------------------------------------------------------------- */
+NR_TYPE soat(indata, rawdata, derivedata, varp)
+NR_TYPE	indata[];
+float	*rawdata, *derivedata;
+DERTBL	*varp;		/* Variable Pointer	*/
+{
+	sbb	= rawdata[varp->depend_index[0]] / 256;
+	detdc	= (-5.0+(double) bitdata[varp->depend_index[1]]*10.0/MAXCNT);
+	idetem	= rawdata[varp->depend_index[2]];
+
+	if (idetem < 0.0)
+		idetem += 65536.0;
+
+	bbctem	= 523.1651 -0.01656*bitdata[varp->depend_index[3]] + TZERO;
+	idetsig	= rawdata[varp->depend_index[4]];
+
+	if (idetsig < 0.0)
+		idetsig += 65536.0;
+
+      if(sbb=='z') {                   /* Null record */
+        sum_bbctem=sum_bbhtem=0.0;
+        sum_bbcsig=sum_bbhsig=0.0;
+        sum_detdc=0.0;
+        sum_detofset+=(double) idetsig;
+        nofset++;
+        av_detofset=sum_detofset/(double) nofset;
+      }
+
+      if(sbb=='c') {                  /* BB cooling calibration */
+        sum_detofset=0.0;
+        nofset=0;
+        sum_bbctem+=(double) bbctem;
+        sum_bbcsig+=(double) idetsig;
+        sum_detdc+=(double) detdc;
+        nbbc++;
+        av_bbctem=sum_bbctem/(double) nbbc;
+        av_bbcsig=sum_bbcsig/(double) nbbc;
+        bbctem_k=av_bbctem;
+        bbcrad=planck_rad(bbctem_k);
+      }
+
+      if(sbb=='h') {                   /* BB heating calibration */
+        sum_detofset=0.0;
+        nofset=0;
+        sum_bbhtem+=(double) bbctem;
+        sum_bbhsig+=(double) idetsig;
+        sum_detdc+=(double) detdc;
+        nbbh++;
+        av_bbhtem=sum_bbhtem/(double) nbbh;
+        bbhtem_k=av_bbhtem;
+        bbhrad=planck_rad(bbhtem_k);
+        av_detdc=sum_detdc/((double) nbbc+(double) nbbh);
+        av_bbhsig=sum_bbhsig/(double) nbbh;
+        gain=-fabs((bbhrad-bbcrad)/((av_bbhsig-av_bbcsig)*10.0/MAXCNT));
+        detdc_v=(-5.0+av_detdc*10.0/MAXCNT);
+        gain_factor=gain*detdc_v*detdc_v;
+      }
+
+      if(sbb=='b') {                   /* Normal record with no BB cooling */
+
+/*  Calculates parameters in eng units  */
+  detem=therm((double) idetem);
+  detsig=((double) idetsig-av_detofset)*10.0/MAXCNT;
+  bbcrad=planck_rad((double)bbctem);
+/* calc_airtem = OphirAirTem = oat */
+  oat = detsig*DFLT_GAIN+bbcrad;
+  if(oat>0.0) 
+	oat=planck_t((double)oat);
+    else 
+	oat=TZERO;
+
+        sum_bbctem=sum_bbhtem=0.0;
+        sum_bbcsig=sum_bbhsig=0.0;
+   }
+
+return(oat);
+}
+
+
+/*  planck_rad - returns hemishperical black body radiance  */
+/*    in W/cm^2/um  */
+double planck_rad(tk)
+double tk;
+{
+  double rad;
+  rad=(2.0*h*c*c*PI)/(pow(lam,5.0)*(exp(h*c/lam/k/tk)-1.0));
+  rad=rad*1.0e-10;
+  return(rad);
+}
+
+/*  planck_t - Returns temp in K from rad in W/cm^2/um  */
+double planck_t(rad)
+double rad;
+{
+  double t;
+  t=h*c/(lam*k*log(2.0*h*c*c*PI/(rad*1.0e10)/pow(lam,5.0)+1.0));
+  return(t);
+}
+
+/*  therm - Temp of detector thermistor deg K  */
+double therm(counts)
+double counts;
+{
+  double tc,rt,v;
+  v=(-5.0+counts/MAXCNT*10.0)/(1.0+50.0/18.2);
+  if(v>-THERM_BIAS/21.0)
+    rt=200.0/(1.0/(1.0/21.0+v/THERM_BIAS)-1.0);
+  else
+    rt=1.0;
+  tc=1.0/(TZERO-50.0)-log(rt/THERM_RZ)/THERM_COEFF;
+  tc=1.0/tc;
+  return(tc);
+}
+
+
+NR_TYPE sotdetc()
+{
+	return(detem);
+}
+
+NR_TYPE sodsigc()
+{
+	return(detsig);
+}
+
+NR_TYPE sobbcr()
+{
+	return(bbcrad);
+}
+
+NR_TYPE sogainf()
+{
+	return(gain_factor);
+}
+
+NR_TYPE sodetof()
+{
+	return(av_detofset);
+}

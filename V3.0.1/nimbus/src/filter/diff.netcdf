@@ -1,0 +1,177 @@
+22c22
+< DESCRIPTION:	This file has the routines necassary to Create and write
+---
+> DESCRIPTION:	This file has the routines necessary to Create and write
+1020a1021,1023
+>   /* Check for time wrap within output data file
+>    */
+>   if (feTime[3] < fsTime[3]) feTime[3] += 86400;
+1023c1026
+<   /* First do all variables where the DataQuality flag is bad.  Whole flight.
+---
+>   /* First do all variables where the DataQuality flag is bad:  whole flight.
+1028,1029c1031
+<   for (i = 0; sdi[i]; ++i)
+<     if (strcmp(sdi[i]->DataQuality, "Bad") == 0)
+---
+>   for (index = 0; index<nsdi; ++index)
+1030a1033,1034
+>     if (strcmp(sdi[index]->DataQuality, "Bad") == 0)
+>       {
+1032c1036,1037
+< 	target, sTime[0], sTime[1], sTime[2], eTime[0], eTime[1], eTime[2]);
+---
+>        sdi[index]->name, fsTime[0], fsTime[1], fsTime[2], feTime[0],
+>        feTime[1], feTime[2]);
+1034a1040,1041
+>       clearDependedByList();
+> 
+1040,1041c1047
+< 
+<       if (writeBlank(sdi[i]->varid, start, count, sdi[i]->OutputRate) == ERR)
+---
+>       if (writeBlank(sdi[index]->varid, start, count, sdi[index]->OutputRate) == ERR)
+1047a1054
+>     }
+1049,1050c1056
+<   for (i = 0; raw[i]; ++i)
+<     if (strcmp(raw[i]->DataQuality, "Bad") == 0)
+---
+>   for (index = 0; index<nraw; ++index)
+1051a1058,1059
+>     if (strcmp(raw[index]->DataQuality, "Bad") == 0)
+>       {
+1053c1061,1062
+< 	target, sTime[0], sTime[1], sTime[2], eTime[0], eTime[1], eTime[2]);
+---
+>        raw[index]->name, fsTime[0], fsTime[1], fsTime[2], feTime[0],
+>        feTime[1], feTime[2]);
+1062c1071
+<       if (writeBlank(raw[i]->varid, start, count, raw[i]->OutputRate) == ERR)
+---
+>       if (writeBlank(raw[index]->varid, start, count, raw[index]->OutputRate) == ERR)
+1068a1078
+>     }
+1070,1071c1080
+<   for (i = 0; derived[i]; ++i)
+<     if (strcmp(derived[i]->DataQuality, "Bad") == 0)
+---
+>   for (index = 0; index<nderive; ++index)
+1072a1082,1083
+>     if (strcmp(derived[index]->DataQuality, "Bad") == 0)
+>       {
+1074c1085,1086
+< 	target, sTime[0], sTime[1], sTime[2], eTime[0], eTime[1], eTime[2]);
+---
+>        derived[index]->name, fsTime[0], fsTime[1], fsTime[2], feTime[0],
+>        feTime[1], feTime[2]);
+1082,1083c1094
+< 
+<       if (writeBlank(derived[i]->varid, start, count, derived[i]->OutputRate) == ERR)
+---
+>       if (writeBlank(derived[index]->varid, start, count, derived[index]->OutputRate) == ERR)
+1089a1101
+>     }
+1092,1093c1104
+< 
+<   /* Loop through each line item in config file.
+---
+>   /* Loop through each line item in BLANKVARS file.
+1094a1106
+> 
+1100d1111
+< 
+1102d1112
+< 
+1105d1114
+< //printf("%d %d %d %d\n", fsTime[3], feTime[3], sTime[3], eTime[3]);
+1113c1122,1133
+<     if (sTime[3] > feTime[3] || eTime[3] < fsTime[3])
+---
+>   /* Sync blanking times to file times  (RLR  13 July 2001)
+>    */
+>     if (sTime[3] < fsTime[3]) sTime[3] += 86400;
+>     if (eTime[3] < sTime[3]) eTime[3] += 86400;
+> 
+>   /*  Test for invalid time period (ignore and warn)  (RLR  13 July 2001)
+>    */
+> //  Old -->  if (sTime[3] > feTime[3] || eTime[3] < fsTime[3])
+>     if (sTime[3] < fsTime[3] || eTime[3] > feTime[3] || sTime[3] > feTime[3] || eTime[3] < fsTime[3])
+>       {
+>       sprintf(buffer, "Blanking times (%02d:%02d:%02d to %02d:%02d:%02d) not valid for %s.\n", sTime[0], sTime[1], sTime[2], eTime[0], eTime[1], eTime[2], target);
+>       LogMessage(buffer);
+1114a1135
+>       }
+1130d1150
+< 
+1133c1153
+<       sprintf(buffer, "Start time preceeds file start time for %s.\n", target);
+---
+>       sprintf(buffer, "Start time precedes file start time for %s.\n", target);
+1138d1157
+< 
+1142a1162,1170
+> 
+> /*  See if measurement has already been blanked for whole flight  */
+>       if (strcmp(sdi[index]->DataQuality, "Bad") == 0)
+>         {
+>         sprintf(buffer, "%s has already been blanked because the DataQuality flag is Bad.\n",sdi[index]->name);
+>         LogMessage(buffer);
+>         }
+>       else
+>         {
+1148d1175
+< 
+1156,1157c1183
+< 
+< 
+---
+>       }
+1160a1187,1195
+> 
+> /*  See if measurement has already been blanked for whole flight  */
+>       if (strcmp(raw[index]->DataQuality, "Bad") == 0)
+>         {
+>         sprintf(buffer, "%s has already been blanked because the DataQuality flag is Bad.\n",raw[index]->name);
+>         LogMessage(buffer);
+>         }
+>       else
+>         {
+1166d1200
+< 
+1173a1208,1209
+>       }
+>     else
+1174a1211,1212
+> /*  if ((index = SearchTableSansLocation((char **)derived, nderive, target)) != ERR)
+>    */
+1175a1214,1221
+>     if ((index = SearchTable((char **)derived, nderive, target)) != ERR)
+>       {
+> /*  See if measurement has already been blanked for whole flight  */
+>       if (strcmp(derived[index]->DataQuality, "Bad") == 0)
+>         {
+>         sprintf(buffer, "%s has already been blanked because the DataQuality flag is Bad.\n",derived[index]->name);
+>         LogMessage(buffer);
+>         }
+1177d1222
+<     if ((index = SearchTableSansLocation((char **)derived, nderive, target)) != ERR)
+1184d1228
+< 
+1192,1193c1236
+< 
+< 
+---
+>       }
+1214,1216d1256
+< //printf(" s = %d %d %d, c = %d %d %d\n", start[0], start[1], start[2],
+< //  count[0], count[1], count[2]);
+< 
+1259c1299
+<   LogMessage(" The following variables depended upon this variable:\n ");
+---
+>   LogMessage(" The following variables depend upon this variable:\n ");
+1268c1308
+<   LogMessage("\n\n");
+---
+>   LogMessage("\n");

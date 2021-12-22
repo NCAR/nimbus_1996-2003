@@ -1,0 +1,13 @@
+#! /bin/csh -f
+ ln rlr_cnctr.c cnctr.c
+ ln rlr_con2c.c con2c.c
+ ln rlr_con2p.c con2p.c
+ ln rlr_deni.c deni.c
+ ln rlr_flux.c flux.c
+ ln rlr_palt.c palt.c
+ ln rlr_plwcc.c plwcc.c
+ ln rlr_psurf.c psurf.c
+ ln rlr_radc.c radc.c
+ ln rlr_rhola.c rhola.c
+ ln rlr_xrlwcc.c xrlwcc.c
+exit

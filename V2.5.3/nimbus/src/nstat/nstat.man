@@ -1,0 +1,30 @@
+.na
+.nh
+.TH NSTAT 1 "29 January 1994" "Local Command"
+.SH NAME
+nstat \- nimbus netCDF statistics
+.SH SYNOPSIS
+.B nstat
+.SH DESCRIPTION
+.B nstat 
+provides simple statistics of data.  The output consists of the mean,
+standard deviation, variance, minimum, and maximum value for each variable
+selected.  nstat provides a GUI similar to nimbus, where you may choose
+which variables to output.  To change the "output" of a variable, just
+double click on the variable.  You may also select many and then use
+CTRL-O to toggle them all at once.
+.PP
+By default nstat uses 15 minutes as its time interval.  The default
+may be changed in the command line with the -s option.
+.PP
+.SH EXAMPLE:
+.PP
+To change the default time period to 5 minutes:
+.PP
+7% nstat -s 300
+.PP
+.SH BUGS
+.PP
+Will not detect gaps in time sequence.
+.SH AUTHOR
+Chris Webster, National Center for Atmospheric Research

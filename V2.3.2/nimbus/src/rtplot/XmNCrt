@@ -1,0 +1,112 @@
+*titleFont:	-adobe-courier-bold-r-normal--24-240-75-75-m-150-iso8859-1
+*subtitleFont:	-adobe-courier-bold-r-normal--18-180-75-75-m-110-iso8859-1
+*ticFont:	-adobe-courier-bold-r-normal--12-120-75-75-m-70-iso8859-1
+rtplot*fontList: -adobe-courier-bold-r-normal--14-140-75-75-m-90-iso8859-1
+!
+rtplot*XmPushButton.height:			32
+rtplot*XmTextField.background:			Burlywood
+rtplot*XmTextField.foreground:			black
+rtplot*topLevelShell.title:			rtplot 1.4
+rtplot*topLevelShell.iconName:			rtplot
+rtplot*buttonFrame.shadowType:			SHADOW_IN
+rtplot*buttonRC.XmPushButton.recomputeSize:	False
+rtplot*buttonRC.XmPushButton.width:		138
+rtplot*buttonRC.entryAlignment:			ALIGNMENT_CENTER
+rtplot*buttonRC.isAligned:			True
+rtplot*buttonRC.orientation:			HORIZONTAL
+!
+rtplot*canvas.background:				grey
+rtplot*canvas.height:				700
+rtplot*canvas.width:				900
+!
+rtplot*varList.background:			black
+rtplot*varList.foreground:			green
+rtplot*varList.width:				120
+!
+rtplot*freeze.labelString:			Freeze
+!
+rtplot*editShell.title:				Edit Parameters
+rtplot*parmsForm.horizontalSpacing:		8
+rtplot*parmsForm.verticalSpacing:			8
+rtplot*parmsForm*buttonRC.spacing:		39
+rtplot*parmsRC*XmForm.horizontalSpacing:		5
+rtplot*parmsRC*XmLabel.alignment:			ALIGNMENT_END
+rtplot*parmsRC*XmLabel.recomputeSize:		False
+rtplot*parmsRC*XmLabel.height:			32
+rtplot*parmsRC*XmLabel.width:			120
+rtplot*menuBar*print.labelString:			Print
+rtplot*menuBar*print.mnemonic:			P
+rtplot*menuBar*print.accelerator:			Ctrl<Key>P
+rtplot*menuBar*print.acceleratorText:		Ctrl-P
+rtplot*menuBar*quit.labelString:			Quit
+rtplot*menuBar*quit.mnemonic:			Q
+rtplot*menuBar*quit.accelerator:			Ctrl<Key>Q
+rtplot*menuBar*quit.acceleratorText:		Ctrl-Q
+rtplot*menuBar*toggleCounts.labelString:		Toggle Counts
+rtplot*menuBar*toggleCounts.mnemonic:		C
+rtplot*menuBar*toggleCounts.accelerator:		Ctrl<Key>C
+rtplot*menuBar*toggleCounts.acceleratorText:	Ctrl-C
+rtplot*menuBar*toggleFlash.labelString:		Toggle Snapshot Mode
+rtplot*menuBar*toggleFlash.mnemonic:		F
+rtplot*menuBar*toggleFlash.accelerator:		Ctrl<Key>F
+rtplot*menuBar*toggleFlash.acceleratorText:	Ctrl-F
+rtplot*menuBar*autoScale.labelString:		Auto Scale Axies
+rtplot*menuBar*autoScale.mnemonic:		A
+rtplot*menuBar*autoScale.accelerator:		Ctrl<Key>A
+rtplot*menuBar*autoScale.acceleratorText:		Ctrl-A
+rtplot*menuBar*toggleGrid.labelString:		Toggle Grid
+rtplot*menuBar*toggleGrid.mnemonic:		G
+rtplot*menuBar*toggleGrid.accelerator:		Ctrl<Key>G
+rtplot*menuBar*toggleGrid.acceleratorText:	Ctrl-G
+rtplot*parmsRC*lbl0.labelString:			Title
+rtplot*parmsRC*txt0.columns:			40
+rtplot*parmsRC*txt0.maxLength:			40
+rtplot*parmsRC*lbl1.labelString:			Subtitle
+rtplot*parmsRC*txt1.columns:			40
+rtplot*parmsRC*txt1.maxLength:			40
+rtplot*parmsRC*lbl2.labelString:			X label
+rtplot*parmsRC*txt2.columns:			40
+rtplot*parmsRC*txt2.maxLength:			40
+rtplot*parmsRC*lbl3.labelString:			Y label
+rtplot*parmsRC*txt3.columns:			40
+rtplot*parmsRC*txt3.maxLength:			40
+rtplot*parmsRC*lbl4.labelString:			Start time
+rtplot*parmsRC*txt4.columns:			16
+rtplot*parmsRC*txt4.maxLength:			16
+rtplot*parmsRC*lbl5.labelString:			End Time
+rtplot*parmsRC*txt5.columns:			16
+rtplot*parmsRC*txt5.maxLength:			16
+rtplot*parmsRC*lbl6.labelString:			Y min
+rtplot*parmsRC*txt6.columns:			16
+rtplot*parmsRC*txt6.maxLength:			16
+rtplot*parmsRC*lbl7.labelString:			Y max
+rtplot*parmsRC*txt7.columns:			16
+rtplot*parmsRC*txt7.maxLength:			16
+!
+rtplot*applyButton.labelString:                 Apply
+rtplot*resetButton.labelString:                 Reset
+rtplot*dismissButton.labelString:               Dismiss
+!
+!       Dialog Boxes
+!
+rtplot*fileBox.defaultPosition:                 FALSE
+rtplot*fileBox.x:                               130
+rtplot*fileBox.y:                               200
+rtplot*fileBox*textColumns:                     50
+rtplot*fileBox*dialogTitle:                     Select a File
+rtplot*errorBox.defaultPosition:                FALSE
+rtplot*errorBox.x:                              450
+rtplot*errorBox.y:                              100
+rtplot*errorBox*background:                     DarkSlateGray
+rtplot*errorBox*dialogTitle:                    Error Message
+rtplot*errorBox*foreground:                     Red
+rtplot*errorBox*XmLabel.alignment:              ALIGNMENT_CENTER
+rtplot*queryBox*dialogTitle:                    Need input
+rtplot*queryBox*alignment:                      ALIGNMENT_CENTER
+rtplot*warnBox.defaultPosition:                 FALSE
+rtplot*warnBox.x:                               450
+rtplot*warnBox.y:                               100
+rtplot*warnBox*background:                      DarkSlateGray
+rtplot*warnBox*dialogTitle:                     Warning Message
+rtplot*warnBox*foreground:                      Yellow
+rtplot*warnBox*XmLabel.alignment:               ALIGNMENT_CENTER

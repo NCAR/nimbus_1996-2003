@@ -1,0 +1,107 @@
+/*
+-------------------------------------------------------------------------
+OBJECT NAME:	irs.c
+
+FULL NAME:	Compute derived winds variables
+
+ENTRY POINTS:	swp3(), shi3()
+
+STATIC FNS:	none
+
+DESCRIPTION:	
+
+INPUT:		Variables from the decoded Honeywell IRS block.
+
+OUTPUT:		WP3, HI3
+
+REFERENCES:	none
+
+REFERENCED BY:	compute.c
+
+COPYRIGHT:	University Corporation for Atmospheric Research, 1992
+-------------------------------------------------------------------------
+*/
+
+#include "nimbus.h"
+#include "amlib.h"
+#include "gust.h"
+
+static NR_TYPE	hi3[nFeedBackTypes];
+
+/* -------------------------------------------------------------------- */
+NR_TYPE swp3(indata, varp)
+NR_TYPE	indata[];	/* Decoded variable data	*/
+DERTBL	*varp;		/* WS variable pointer		*/
+{
+	NR_TYPE	alat, vew, vns, palt, acins, vspd;
+	NR_TYPE	gfact, delth, tas_dab, vcorac, acz, delph, thedot;
+
+	static bool	firstTime[nFeedBackTypes] = { TRUE, TRUE };
+	static NR_TYPE	hx[nFeedBackTypes], hxx[nFeedBackTypes],
+			wp3[nFeedBackTypes], DELT[nFeedBackTypes];
+
+	vspd	= indata[varp->depend_index[0]];
+
+/* DependTable entry for WP3 should be "WP3    ALAT VEW VNS PALT ACINS"
+	if we start using the computed WP3.
+
+	alat	= indata[varp->depend_index[0]] * RAD;
+	vew	= indata[varp->depend_index[1]];
+	vns	= indata[varp->depend_index[2]];
+	palt	= indata[varp->depend_index[3]];
+	acins	= indata[varp->depend_index[4]];
+*/
+
+	return(vspd);
+/*
+	if (firstTime[FeedBack])
+		{
+		if (FeedBack == LOW_RATE_FEEDBACK)
+			DELT[FeedBack]	= 1.0;
+		else
+			DELT[FeedBack]	= 1.0 / ProcessingRate;
+
+		hx[FeedBack]	= hxx[FeedBack] = wp3[FeedBack] = 0.0;
+		vzc[FeedBack]	= 0;
+		hi3[FeedBack]	= palt;
+
+		firstTime[FeedBack] = FALSE;
+		}
+
+*/
+	/* Computation of vertical component of coriolis acceleration
+	 */
+	/* Computation of local gravity estimate, ACZ
+	 */
+/*	vcorac = -2.0 * OMEGAE * vew * (NR_TYPE)cos((double)alat) +
+			(vew * vew + vns * vns) / EARTH_RADIUS;
+
+	gfact = 9.780356 * (1.0 - 0.31391116e-6 * palt) *
+		(1.0 + 0.0052885 * pow(sin((double)alat), (double)2.0));
+
+	acz	= acins + (WH_GRAVITY - gfact) + vcorac;
+	vzc[FeedBack]	= vzc[FeedBack] + acz * DELT[FeedBack];
+	wp3[FeedBack]	= wp3[FeedBack] +
+			(acz - C2 * hx[FeedBack] - C3 * hxx[FeedBack]) *
+			DELT[FeedBack];
+*/
+
+	/* 3rd order vertical velocity damping using PALT as reference
+	 */
+/*	hi3[FeedBack]	= hi3[FeedBack] + (wp3[FeedBack] - C1 * hx[FeedBack])
+			* DELT[FeedBack];
+	hx[FeedBack]	= hi3[FeedBack] - palt;
+	hxx[FeedBack]	= hxx[FeedBack] + hx[FeedBack] * DELT[FeedBack];
+
+
+	return(wp3[FeedBack]);
+*/
+}	/* END SWP3 */
+
+/* -------------------------------------------------------------------- */
+NR_TYPE shi3()
+{
+	return(hi3[FeedBack]);
+}
+
+/* END IRS.C */

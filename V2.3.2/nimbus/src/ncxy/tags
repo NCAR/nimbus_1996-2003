@@ -1,0 +1,51 @@
+AddVariable	dataIO.c	/^void AddVariable(indx)$/
+ApplyParms	Xdialog.c	/^ApplyParms(w, clientData, callData)$/
+AutoScale	autoscale.c	/^void AutoScale(axis)$/
+CENTER	ps.c	/^#define	CENTER(x, y, s)	fprintf(fp, \\$/
+CreateMainWindow	Xwin.c	/^Widget CreateMainWindow(parent)$/
+CreateParmsWindow	Xdialog.c	/^CreateParmsWindow(parent)$/
+DeleteVariable	dataIO.c	/^void DeleteVariable(indx)$/
+DismissParmsWindow	Xdialog.c	/^DismissParmsWindow(w, clientData, callData)$/
+DoAutoScale	ccb.c	/^DoAutoScale(widget, clientData, callData)$/
+EditParms	Xdialog.c	/^EditParms(w, clientData, callData)$/
+FindMinMax	dataIO.c	/^void FindMinMax()$/
+GetDataFileName	ccb.c	/^GetDataFileName(widget, clientData, callData)$/
+HandleError	error.c	/^void HandleError(s, interactiv, status)$/
+Initialize	init.c	/^Initialize()$/
+MakeTicLabel	misc.c	/^MakeTicLabel(buffer, diff, value)$/
+Mncplot	ncplot.c	/^main(argc, argv)$/
+ModifyActiveVars	ccb.c	/^ModifyActiveVars(widget, clientData, callData)$/
+NewDataFile	dataIO.c	/^void NewDataFile(w, clientData, callData)$/
+PageBackward	ccb.c	/^PageBackward(widget, clientData, callData)$/
+PageForward	ccb.c	/^PageForward(widget, clientData, callData)$/
+PlotData	Xplot.c	/^void PlotData(w, clientData, callData)$/
+PlotLines	Xplot.c	/^static void PlotLines(dpy, win, gc, font_info)$/
+PrintPS	ccb.c	/^PrintPS(widget, clientData, callData)$/
+PrintPostScript	ps.c	/^void PrintPostScript(w, clientData, callData)$/
+Quit	ccb.c	/^Quit(widget, clientData, callData)$/
+ReadData	dataIO.c	/^void ReadData(w, clientData, callData)$/
+ReadParmsFile	parmsIO.c	/^void ReadParmsFile(w, clientData, callData)$/
+ReadParmsFileName	ccb.c	/^ReadParmsFileName(widget, clientData, callData)$/
+RoundBig	autoscale.c	/^static NR_TYPE RoundBig(x, round)$/
+SearchTable	search.c	/^SearchTable(table, ntable, target)$/
+SearchTableSansLocation	search.c	/^SearchTableSansLocation(table, ntable, target)$/
+SetReadData	Xdialog.c	/^SetReadData(w, clientData, callData)$/
+SetYdialog	Xdialog.c	/^SetYdialog()$/
+SortTable	sort.c	/^void SortTable(table, beg, end)$/
+ToggleGrid	ccb.c	/^ToggleGrid(widget, clientData, callData)$/
+ValidateFloat	Xdialog.c	/^ValidateFloat(w, client, call)$/
+ValidateTime	Xdialog.c	/^ValidateTime(w, client, call)$/
+WriteParmsFile	parmsIO.c	/^void WriteParmsFile(w, clientData, callData)$/
+WriteParmsFileName	ccb.c	/^WriteParmsFileName(widget, clientData, callData)$/
+YLEGEND	Xplot.c	/^#define YLEGEND(s)      (688-(s*12))   \/* Y offset/
+do_line_graph	ps.c	/^static void do_line_graph(fp)$/
+do_ytics	Xplot.c	/^static void do_ytics(dpy, win, gc, font_info)$/
+expt	autoscale.c	/^static NR_TYPE expt(a, n)$/
+for	Xplot.c	/^	for (CurrentDataSet = 0; CurrentDataSet < NumberD/
+free_data	dataIO.c	/^static void free_data()$/
+print_PS_CB2	ccb.c	/^print_PS_CB2(widget, clientData, callData)$/
+process_args	init.c	/^process_args(argv)$/
+scaleaxis	autoscale.c	/^static void scaleaxis(min, max)$/
+set_clipping	Xplot.c	/^static void set_clipping(dpy, gc)$/
+sort_the_table	sort.c	/^static void sort_the_table(beg, end)$/
+write_parms_CB2	ccb.c	/^write_parms_CB2(widget, clientData, callData)$/

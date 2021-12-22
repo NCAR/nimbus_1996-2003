@@ -1,0 +1,133 @@
+/*
+-------------------------------------------------------------------------
+OBJECT NAME:	rdma.c
+
+FULL NAME:	Translate RDMA houskeeping variables to Nimbus record
+		format
+
+ENTRY POINTS:	xlrdma*()
+
+STATIC FNS:	none
+
+DESCRIPTION:	
+
+INPUT:		
+
+OUTPUT:		
+
+REFERENCES:	none
+
+REFERENCED BY:	rec_decode.c
+
+COPYRIGHT:	University Corporation for Atmospheric Research, 2001
+-------------------------------------------------------------------------
+*/
+
+#include "nimbus.h"
+#include "amlib.h"
+
+extern char	*ADSrecord;
+
+
+/* -------------------------------------------------------------------- */
+void xlrdmavd(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+int i;
+static int firstTime = TRUE;
+static FILE *fp;
+
+  *np = (NR_TYPE)ntohf(((Rdma_blk *)input)->vd);
+
+  if (firstTime)
+    {
+    if (ProductionRun)
+      sprintf(buffer, "%s/%s%s.rdma", getenv("PROD_DATA"), ProjectNumber, FlightNumber);
+    else
+      sprintf(buffer, "%s/%s%s.rdma", getenv("DATA_DIR"), ProjectNumber, FlightNumber);
+
+    if ((fp = fopen(buffer, "w+")) == NULL)
+      {
+      fprintf(stderr, "rdma.c: can't open %s\n", buffer);
+      exit(1);
+      }
+    firstTime = FALSE;
+    }
+
+
+if ( ((Rdma_blk *)input)->item_type[0] != 'h')
+{
+fprintf(fp, "%s @ %02d:%02d:%02d\n", ((Rdma_blk *)input)->item_type,
+	ntohs(((short *)ADSrecord)[1]), ntohs(((short *)ADSrecord)[2]),
+	ntohs(((short *)ADSrecord)[3]));
+
+for (i = 0; i < 200; ++i)
+  fprintf(fp, "%.2f ", (NR_TYPE)ntohf(((Rdma_blk *)input)->scan[i]));
+fprintf(fp, "\n"); fflush(fp);
+}
+
+}
+
+/* -------------------------------------------------------------------- */
+void xlrdmavsh(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+  *np = (NR_TYPE)ntohf(((Rdma_blk *)input)->vsh);
+
+}
+
+/* -------------------------------------------------------------------- */
+void xlrdmaqa(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+  *np = (NR_TYPE)ntohf(((Rdma_blk *)input)->qa);
+
+}
+
+/* -------------------------------------------------------------------- */
+void xlrdmaqsh(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+  *np = (NR_TYPE)ntohf(((Rdma_blk *)input)->qsh);
+
+}
+
+/* -------------------------------------------------------------------- */
+void xlrdmaqs(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+  *np = (NR_TYPE)ntohf(((Rdma_blk *)input)->qs);
+
+}
+
+/* -------------------------------------------------------------------- */
+void xlrdmaqex(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+  *np = (NR_TYPE)ntohf(((Rdma_blk *)input)->qex);
+
+}
+
+/* -------------------------------------------------------------------- */
+void xlrdmapabs(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+  *np = (NR_TYPE)ntohf(((Rdma_blk *)input)->pabs);
+
+}
+
+/* -------------------------------------------------------------------- */
+void xlrdmarh(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+  *np = (NR_TYPE)ntohf(((Rdma_blk *)input)->rh);
+
+}
+
+/* -------------------------------------------------------------------- */
+void xlrdmatemp(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+  *np = (NR_TYPE)ntohf(((Rdma_blk *)input)->temp);
+
+}
+
+/* -------------------------------------------------------------------- */
+void xlrdmahvps(RAWTBL *varp, void *input, NR_TYPE *np)
+{
+  *np = (NR_TYPE)ntohf(((Rdma_blk *)input)->hvps);
+
+}
+
+/* END RDMA.C */

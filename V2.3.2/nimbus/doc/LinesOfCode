@@ -1,0 +1,39 @@
+
+
+ads/dsm/src		 1842	2348
+ads/dsm/include		 3220	4033
+ads/dsm/class		 8049  10799
+                        -----
+		Total = 13111  17180
+
+ads/disc/src		  883	1202
+ads/disc/include	 1794	2255
+ads/disc/class		 5049	6832
+                        -----
+		Total =  7726  10289
+
+xbuild			 4435	5416
+                        -----
+		Total =  4435	5416
+
+nimbus/src		 8042  10760
+nimbus/include		 1225	1401
+nimbus/amlib		 7345  10621
+                        -----
+                Total = 16612  22782
+
+winds/src		45743  56145
+winds/include		 2429	2720
+                        -----
+		Total = 48172  58865
+
+
+hdr_api			 1934	2944
+libraf			 1881	2580
+libPMS			  145	 208
+vardb/lib		  767	1127
+vardb/vared		  589	 819
+                        -----
+		Total =  5316	7668
+
+Grand Total = 97,058 lines of code.	124,212 Needs retotalling.

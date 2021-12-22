@@ -1,0 +1,45 @@
+# This file contains variables that should be summed rather than averaged.
+#
+#
+# CN Counter
+#
+CNTS
+CVCNT
+XCVCNT
+#
+# PMS1D housekeeping vars.
+#
+FSTB
+FRST
+FACT
+FSTT
+FTMP
+FANV
+FSIG
+FREF
+PACT
+PSTT
+PTMP
+PREF
+PFLW
+PBRS
+P6RST
+P6TMP
+P6E01
+P6E64
+2XED01
+2XED16
+2XMIRT
+2XSPR1
+2XSPR2
+2XEDRJ
+2XSPR3
+2XSPR4
+2YED01
+2YED16
+2YMIRT
+2YSPR1
+2YSPR2
+2YEDRJ
+2YSPR3
+2YSPR4

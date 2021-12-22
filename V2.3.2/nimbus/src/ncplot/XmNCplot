@@ -1,0 +1,227 @@
+*defaultFontList:	-adobe-courier-bold-r-*-*-14-140-75-75-*-*-*-*
+*titleFont:		-adobe-courier-bold-r-*-*-24-240-75-75-*-*-*-*
+*subtitleFont:		-adobe-courier-bold-r-*-*-18-180-75-75-*-*-*-*
+*ticFont:		-adobe-courier-bold-r-*-*-12-120-75-75-*-*-*-*
+!
+*plotParmsRC*fontList:	-adobe-courier-bold-r-*-*-12-120-75-75-*-*-*-*
+*asciiParmsRC*fontList:	-adobe-courier-bold-r-*-*-12-120-75-75-*-*-*-*
+*diffParmsRC*fontList:	-adobe-courier-bold-r-*-*-12-120-75-75-*-*-*-*
+*printParmsRC*fontList:	-adobe-courier-bold-r-*-*-12-120-75-75-*-*-*-*
+!
+*XmPushButton.height:			32
+*XmTextField.background:		Burlywood
+*XmTextField.foreground:		black
+*XmForm.horizontalSpacing:		6
+*XmForm.verticalSpacing:		6
+*topLevelShell.title:			ncplot 2.0
+*topLevelShell.iconName:		ncplot
+*buttonFrame.shadowType:		SHADOW_IN
+*buttonRC.XmPushButton.recomputeSize:	False
+*buttonRC.XmPushButton.width:		130
+*buttonRC.entryAlignment:		ALIGNMENT_CENTER
+*buttonRC.isAligned:			True
+*buttonRC.orientation:			HORIZONTAL
+!
+*canvas.background:			grey
+*canvas.height:				675
+*canvas.width:				850
+!
+*specCanvas.background:			white
+*specCanvas.height:			650
+*specCanvas.width:			600
+!
+*diffCanvas.background:			white
+*diffCanvas.height:			300
+*diffCanvas.width:			800
+!
+*varList.background:			black
+*varList.foreground:			green
+*varList.width:				120
+!
+*pgButtRC.entryAlignment:		ALIGNMENT_CENTER
+*pgButtRC.orientation:			VERTICAL
+*pageFwd.labelString:			Pg Fwd
+*pageBkd.labelString:			Pg Bkd
+!
+*editSpecShell.title:			Edit Spectra Parameters
+*specShell.title:			Spectra
+*diffShell.title:			Difference
+*asciiShell.title:			ASCII
+!
+*asciiText.background:			Gray
+*asciiText.columns:			40
+*asciiText.editable:			False
+*asciiText.editMode:			MULTI_LINE_EDIT
+*asciiText.fontList:	-adobe-courier-bold-r-*-*-12-120-75-75-*-*-*-*
+*asciiText.rows:			45
+!
+*menuBar*newData.labelString:		New Data File
+*menuBar*newData.mnemonic:		N
+*menuBar*newData.accelerator:		Ctrl<Key>N
+*menuBar*newData.acceleratorText:	Ctrl-N
+*menuBar*readParms.labelString:		Read Parms File
+*menuBar*readParms.mnemonic:		R
+*menuBar*readParms.accelerator:		Ctrl<Key>R
+*menuBar*readParms.acceleratorText:	Ctrl-R
+*menuBar*writeParms.labelString:	Write Parms File
+*menuBar*writeParms.mnemonic:		W
+*menuBar*writeParms.accelerator:	Ctrl<Key>W
+*menuBar*writeParms.acceleratorText:	Ctrl-W
+*menuBar*savePS.labelString:		Save PostScript
+*menuBar*savePS.mnemonic:		S
+*menuBar*savePS.accelerator:		Ctrl<Key>S
+*menuBar*savePS.acceleratorText:	Ctrl-S
+*menuBar*print.labelString:		Print
+*menuBar*print.mnemonic:		P
+*menuBar*print.accelerator:		Ctrl<Key>P
+*menuBar*print.acceleratorText:		Ctrl-P
+*menuBar*quit.labelString:		Quit
+*menuBar*quit.mnemonic:			Q
+*menuBar*quit.accelerator:		Ctrl<Key>Q
+*menuBar*quit.acceleratorText:		Ctrl-Q
+*menuBar*editParms.labelString:		Plot Parameters
+*menuBar*editParms.mnemonic:		P
+*menuBar*editParms.accelerator:		Ctrl<Key>E
+*menuBar*editParms.acceleratorText:	Ctrl-E
+*menuBar*editSpec.labelString:		Spectral Parameters
+*menuBar*editSpec.mnemonic:		S
+*menuBar*viewSpectra.labelString:	Spectra
+*menuBar*viewSpectra.mnemonic:		S
+*menuBar*viewDiff.labelString:		Difference
+*menuBar*viewDiff.mnemonic:		D
+*menuBar*viewASCII.labelString:		ASCII
+*menuBar*viewASCII.mnemonic:		A
+*menuBar*toggleAS.labelString:		Toggle Auto Scaling On/Off
+*menuBar*autoScale.labelString:		Scale Y Axis
+*menuBar*autoScale.mnemonic:		A
+*menuBar*autoScale.accelerator:		Ctrl<Key>A
+*menuBar*autoScale.acceleratorText:	Ctrl-A
+*menuBar*toggleGrid.labelString:	Toggle Grid
+*menuBar*toggleGrid.mnemonic:		G
+*menuBar*toggleGrid.accelerator:	Ctrl<Key>G
+*menuBar*toggleGrid.acceleratorText:	Ctrl-G
+!
+! Edit Parms Window
+!
+*editShell.title:			Edit Parameters
+*plotParmsTitle.childHorizontalAlignment:	ALIGNMENT_CENTER
+*asciiParmsTitle.childHorizontalAlignment:	ALIGNMENT_CENTER
+*diffParmsTitle.childHorizontalAlignment:	ALIGNMENT_CENTER
+*printParmsTitle.childHorizontalAlignment:	ALIGNMENT_CENTER
+*plotParmsTitle.childVerticalAlignment:		ALIGNMENT_BASELINE_BOTTOM
+*asciiParmsTitle.childVerticalAlignment:	ALIGNMENT_BASELINE_BOTTOM
+*diffParmsTitle.childVerticalAlignment:		ALIGNMENT_BASELINE_BOTTOM
+*printParmsTitle.childVerticalAlignment:	ALIGNMENT_BASELINE_BOTTOM
+*plotParmsTitle.childHorizontalSpacing:		5
+*asciiParmsTitle.childHorizontalSpacing:	5
+*diffParmsTitle.childHorizontalSpacing:		5
+*printParmsTitle.childHorizontalSpacing:	5
+*plotParmsTitle.childType:		FRAME_TITLE_CHILD
+*asciiParmsTitle.childType:		FRAME_TITLE_CHILD
+*diffParmsTitle.childType:		FRAME_TITLE_CHILD
+*printParmsTitle.childType:		FRAME_TITLE_CHILD
+*plotParmsTitle.labelString:		Plot Parameters
+*asciiParmsTitle.labelString:		ASCII Parameters
+*diffParmsTitle.labelString:		Difference Parameters
+*printParmsTitle.labelString:		Print Parameters
+!
+*parmsRC*buttonRC.spacing:		8
+!
+*plotParmsRC.spacing:			0
+*plotParmsRC*plRC.orientation:		HORIZONTAL
+*plotParmsRC*plRC.marginHeight:		1
+*asciiParmsRC.spacing:			0
+*asciiParmsRC*plRC.orientation:		HORIZONTAL
+*asciiParmsRC*plRC.marginHeight:	1
+*diffParmsRC.spacing:			0
+*diffParmsRC*plRC.orientation:		HORIZONTAL
+*diffParmsRC*plRC.marginHeight:		1
+*printParmsRC.spacing:			0
+*printParmsRC*plRC.orientation:		HORIZONTAL
+*printParmsRC*plRC.marginHeight:	1
+*plRC*XmLabel.alignment:		ALIGNMENT_END
+*plRC*XmLabel.recomputeSize:		False
+*plRC*XmLabel.width:			100
+*plotParmsRC*lbl0.labelString:		Title
+*plotParmsRC*txt0.columns:		40
+*plotParmsRC*txt0.maxLength:		40
+*plotParmsRC*lbl1.labelString:		Subtitle
+*plotParmsRC*txt1.columns:		40
+*plotParmsRC*txt1.maxLength:		40
+*plotParmsRC*lbl2.labelString:		X label
+*plotParmsRC*txt2.columns:		40
+*plotParmsRC*txt2.maxLength:		40
+*plotParmsRC*lbl3.labelString:		Y label
+*plotParmsRC*txt3.columns:		40
+*plotParmsRC*txt3.maxLength:		40
+*plotParmsRC*lbl4.labelString:		Start time
+*plotParmsRC*txt4.columns:		16
+*plotParmsRC*txt4.maxLength:		16
+*plotParmsRC*lbl5.labelString:		End Time
+*plotParmsRC*txt5.columns:		16
+*plotParmsRC*txt5.maxLength:		16
+*plotParmsRC*lbl6.labelString:		Y min
+*plotParmsRC*txt6.columns:		16
+*plotParmsRC*txt6.maxLength:		16
+*plotParmsRC*lbl7.labelString:		Y max
+*plotParmsRC*txt7.columns:		16
+*plotParmsRC*txt7.maxLength:		16
+*asciiParmsRC*lbl8.labelString:		# data points
+*asciiParmsRC*txt8.columns:		6
+*asciiParmsRC*txt8.maxLength:		6
+*asciiParmsRC*lbl9.labelString:		Format
+*asciiParmsRC*txt9.columns:		6
+*asciiParmsRC*txt9.maxLength:		6
+*diffParmsRC*lbl10.labelString:		Y label
+*diffParmsRC*txt10.columns:		16
+*diffParmsRC*txt10.maxLength:		16
+*printParmsRC*lbl11.labelString:	Print command
+*printParmsRC*txt11.columns:		40
+*printParmsRC*txt11.maxLength:		40
+!
+! Spectral Paramtere Window
+!
+*specFrame.shadowType:			SHADOW_IN
+*specParmsRC*buttonRC.spacing:		91
+*opMenRC.orientation:			HORIZONTAL
+*slOpMenu.labelString:			Segment Length
+*winOpMenu.labelString:			Window
+*dtOpMenu.labelString:			Detrend
+*yAxRC.orientation:			HORIZONTAL
+*yAxRC*XmLabel.alignment:		ALIGNMENT_END
+*yAxRC*XmLabel.width:			120
+*yAxRC*XmLabel.recomputeSize:		False
+*yAxRC*XmTextField.columns:		10
+*yAxRC*XmTextField.maxLength:		10
+*spYminLbl.labelString:			Y min
+*spYmaxLbl.labelString:			Y max
+!
+*applyButton.labelString:		Apply
+*dismissButton.labelString:		Dismiss
+*printButton.labelString:		Print
+*resetButton.labelString:		Reset
+*saveButton.labelString:		Save
+!
+!       Dialog Boxes
+!
+*fileBox.defaultPosition:                 FALSE
+*fileBox.x:                               130
+*fileBox.y:                               200
+*fileBox*textColumns:                     50
+*fileBox*dialogTitle:                     Select a File
+*errorBox.defaultPosition:                FALSE
+*errorBox.x:                              450
+*errorBox.y:                              100
+*errorBox*background:                     DarkSlateGray
+*errorBox*dialogTitle:                    Error Message
+*errorBox*foreground:                     Red
+*errorBox*XmLabel.alignment:              ALIGNMENT_CENTER
+*queryBox*dialogTitle:                    Need input
+*queryBox*alignment:                      ALIGNMENT_CENTER
+*warnBox.defaultPosition:                 FALSE
+*warnBox.x:                               450
+*warnBox.y:                               100
+*warnBox*background:                      DarkSlateGray
+*warnBox*dialogTitle:                     Warning Message
+*warnBox*foreground:                      Yellow
+*warnBox*XmLabel.alignment:               ALIGNMENT_CENTER

@@ -1,0 +1,96 @@
+AddVariable	dataIO.c	/^void AddVariable(int indx)$/
+ApplyParms	ed_plot.c	/^static void ApplyParms(Widget w, XtPointer clientD/
+ApplySpecParms	ed_spec.c	/^static void ApplySpecParms(Widget w, XtPointer cli/
+AutoScale	autoscale.c	/^void AutoScale(char axis)$/
+AutoScaleDiff	autoscale.c	/^void AutoScaleDiff()$/
+Bartlett	window.c	/^double Bartlett(int j, int N)$/
+Blackman	window.c	/^double Blackman(int j, int N)$/
+CENTER	ps.c	/^#define	CENTER(x, y, s)	fprintf(fp, \\$/
+CoSpectrum	cospec.c	/^void CoSpectrum(float data1[],		\/* Input data				*/
+ComputeDiff	diff.c	/^void ComputeDiff(Widget w, XtPointer client, XtPoi/
+CreateASCIIwindow	ascii.c	/^static void CreateASCIIwindow()$/
+CreateDifferenceWindow	diff.c	/^static void CreateDifferenceWindow()$/
+CreateMainWindow	Xwin.c	/^Widget CreateMainWindow(parent)$/
+CreateParmsWindow	ed_plot.c	/^void CreateParmsWindow(Widget parent)$/
+CreateSpecParmsWindow	ed_spec.c	/^void CreateSpecParmsWindow(Widget parent)$/
+CreateSpectrumWindow	spec.c	/^static void CreateSpectrumWindow()$/
+DeleteVariable	dataIO.c	/^void DeleteVariable(int indx)$/
+DetrendLinear	detrend.c	/^void DetrendLinear(float in[], float out[], int M)/
+DetrendMean	detrend.c	/^void DetrendMean(float in[], float out[], int M)$/
+DetrendNone	detrend.c	/^void DetrendNone(float in[], float out[], int M)$/
+DiffWinControl	diff.c	/^void DiffWinControl()$/
+DismissASCII	ascii.c	/^static void DismissASCII(Widget w, XtPointer clien/
+DismissWindow	ccb.c	/^void DismissWindow(Widget w, XtPointer client, XtP/
+DoAutoScale	ccb.c	/^void DoAutoScale(Widget w, XtPointer client, XtPoi/
+DoTheBox	Xplot.c	/^static void DoTheBox(Widget w, XtPointer client, X/
+EditPlotParms	ed_plot.c	/^void EditPlotParms(Widget w, XtPointer clientData,/
+EditSpecParms	ed_spec.c	/^void EditSpecParms(Widget w, XtPointer clientData,/
+FindMinMax	dataIO.c	/^static void FindMinMax()$/
+GetDataFileName	ccb.c	/^void GetDataFileName(Widget w, XtPointer client, X/
+Hamming	window.c	/^double Hamming(int j, int N)$/
+HandleError	error.c	/^void HandleError(char s[], bool interactiv, char s/
+Hanning	window.c	/^double Hanning(int j, int N)$/
+Initialize	init.c	/^void Initialize()$/
+LinearLeastSquare	regret.c	/^void LinearLeastSquare(float in[], float out[], in/
+MakeLogTicLabel	ticlabel.c	/^void MakeLogTicLabel(char buffer[], int value)$/
+MakeTicLabel	ticlabel.c	/^void MakeTicLabel(char buffer[], double diff, doub/
+MakeTimeTicLabel	ticlabel.c	/^void MakeTimeTicLabel(char buffer[], int indx)$/
+Mncplot	ncplot.c	/^main(argc, argv)$/
+ModifyActiveVars	ccb.c	/^void ModifyActiveVars(Widget w, XtPointer client, /
+NewDataFile	dataIO.c	/^void NewDataFile(Widget w, XtPointer client, XtPoi/
+PageBackward	page.c	/^void PageBackward(Widget w, XtPointer client, XtPo/
+PageForward	page.c	/^void PageForward(Widget w, XtPointer client, XtPoi/
+Parzen	window.c	/^double Parzen(int j, int N)$/
+PlotData	Xplot.c	/^void PlotData(Widget w, XtPointer client, XmDrawin/
+PlotDifference	XplotDiff.c	/^void PlotDifference(Widget w,$/
+PlotSpectrum	XplotSpec.c	/^void PlotSpectrum(	Widget w,$/
+PrintASCII	ascii.c	/^static void PrintASCII(Widget w, XtPointer client,/
+PrintPS	ccb.c	/^void PrintPS(Widget w, XtPointer client, XtPointer/
+PrintPostScript	ps.c	/^void PrintPostScript(Widget w, XtPointer client, X/
+Quit	ccb.c	/^void Quit(Widget w, XtPointer client, XtPointer ca/
+ReadData	dataIO.c	/^void ReadData(Widget w, XtPointer client, XtPointe/
+ReadParmsFile	parmsIO.c	/^void ReadParmsFile(Widget w, XtPointer client, XtP/
+ReadParmsFileName	ccb.c	/^void ReadParmsFileName(Widget w, XtPointer client,/
+ReduceData	dataIO.c	/^void ReduceData(int start, int newNumberSeconds)$/
+RoundBig	autoscale.c	/^static NR_TYPE RoundBig(NR_TYPE x, int round)$/
+SaveASCII	ascii.c	/^static void SaveASCII(Widget w, XtPointer client, /
+Save_OK	ascii.c	/^static void Save_OK(Widget w, XtPointer client, Xm/
+SearchTable	search.c	/^SearchTable(char *table[], int ntable, char target/
+SetASCIIdata	ascii.c	/^void SetASCIIdata(Widget w, XtPointer client, XtPo/
+SetDetrend	spec.c	/^void SetDetrend(Widget w, XtPointer client, XtPoin/
+SetReadData	ed_plot.c	/^static void SetReadData(Widget w, XtPointer client/
+SetSegLen	spec.c	/^void SetSegLen(Widget w, XtPointer client, XtPoint/
+SetSpecDefaults	ed_spec.c	/^static void SetSpecDefaults()$/
+SetWindow	spec.c	/^void SetWindow(Widget w, XtPointer client, XtPoint/
+SetYdialog	ed_plot.c	/^void SetYdialog()$/
+SetYlabel	ed_plot.c	/^void SetYlabel(char *s)$/
+Shuffle2Arr	fft.c	/^static void Shuffle2Arr(double *a, double *b, int /
+ShuffleIndex	fft.c	/^static unsigned int ShuffleIndex(unsigned int i, i/
+SortTable	sort.c	/^void SortTable(char **table, int beg, int end)$/
+Spectrum	spctrm.c	/^void Spectrum(	float data[],		\/* Input data				*\/$/
+SpectrumControl	spec.c	/^void SpectrumControl(Widget w, XtPointer client, X/
+Square	window.c	/^double Square(int j, int N)$/
+ToggleAutoScaling	ccb.c	/^void ToggleAutoScaling(Widget w, XtPointer client,/
+ToggleGrid	ccb.c	/^void ToggleGrid(Widget w, XtPointer client, XtPoin/
+ValidateFloat	ed_plot.c	/^static void ValidateFloat(Widget w, XtPointer clie/
+ValidateTime	ed_plot.c	/^static void ValidateTime(Widget w, XtPointer clien/
+ViewASCII	ascii.c	/^void ViewASCII(Widget w, XtPointer client, XtPoint/
+Welch	window.c	/^double Welch(int j, int N)$/
+WriteParmsFile	parmsIO.c	/^void WriteParmsFile(Widget w, XtPointer client, Xt/
+WriteParmsFileName	ccb.c	/^void WriteParmsFileName(Widget w, XtPointer client/
+YLEGEND	Xplot.c	/^#define YLEGEND(s)      (665-(s*12))   \/* Y offset/
+Zoom	Xplot.c	/^void Zoom(Widget w, XtPointer client, XmDrawingAre/
+do_line_graph	ps.c	/^static void do_line_graph(FILE *fp)$/
+do_ytics	Xplot.c	/^static void do_ytics(dpy, win, gc, font_info)$/
+expt	autoscale.c	/^static NR_TYPE expt(NR_TYPE a, int n)$/
+fft	fft.c	/^void fft(double *real, double *imaginary, int powe/
+formatLine	ascii.c	/^static char *formatLine($/
+formatTitle	ascii.c	/^static char *formatTitle(char buff[]) $/
+free_data	dataIO.c	/^static void free_data()$/
+plotLines	Xplot.c	/^static void plotLines(dpy, win, gc, font_info)$/
+print_PS_CB2	ccb.c	/^static void print_PS_CB2(Widget w, XtPointer clien/
+processArgs	init.c	/^void processArgs(argv)$/
+scaleaxis	autoscale.c	/^static void scaleaxis(NR_TYPE *min, NR_TYPE *max)$/
+set_clipping	Xplot.c	/^static void set_clipping(dpy, gc)$/
+sort_the_table	sort.c	/^static void sort_the_table(int beg, int end)$/
+write_parms_CB2	ccb.c	/^static void write_parms_CB2(Widget w, XtPointer cl/

@@ -1,0 +1,17 @@
+/Makefile/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/amlib.fns/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/amlib.h/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/amlibProto.h/1.1.1.1/Mon Nov 15 22:16:05 1999//
+/amlibfn.h/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/bounds.h/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/circbuff.h/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/decode.h/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/filters.h/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/gui.h/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/gust.h/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/make_amlib/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/make_amlib.c/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/nimbus.h/1.1.1.1/Mon Nov 15 22:16:05 1999//
+/qc.h/1.1.1.1/Mon Nov 15 22:16:04 1999//
+/xlatefns.h/1.1.1.1/Mon Nov 15 22:16:05 1999//
+D

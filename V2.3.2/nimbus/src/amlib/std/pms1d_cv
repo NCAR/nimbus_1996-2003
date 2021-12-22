@@ -1,0 +1,71 @@
+/*
+-------------------------------------------------------------------------
+OBJECT NAME:	pms1d_cv
+
+FULL NAME:	PMS1D Compute Variables
+
+ENTRY POINTS:	none
+
+STATIC FNS:	none
+
+DESCRIPTION:	This is the compute engine used by all PMS1D probes.
+		It is included into each pms probe .c file in the
+		apropriate place.  Certain variables are already expected
+		to exist.
+
+INCLUDED BY:	sfssp(), sasas(), s200x(), s200y(), s260x(), f300.c
+
+NOTES:		Calculations taken from Bulletin 24 dated 1/89.
+-------------------------------------------------------------------------
+*/
+
+	{
+	register	ProbeCount = varp->ProbeCount;
+	NR_TYPE		dbar2, conc;
+	double		z;
+
+	disp[ProbeCount] = dbar[ProbeCount] = dbar2 = z =
+	total_concen[ProbeCount] = 0.0;
+
+#ifdef PLWC
+	plwc[ProbeCount] = 0.0;
+#endif
+
+	for (i = FIRST_BIN; i < LAST_BIN; ++i)
+		if (sv[i] == 0.0)
+			concentration[i] = 0.0;
+		else
+			{
+			concentration[i] = conc = actual[i] / sv[i];
+			dbar[ProbeCount]+= dia[i] * conc;
+			dbar2		+= dia[i] * dia[i] * conc;
+#ifdef PLWC
+			plwc[ProbeCount]+= dia[i]* dia[i]* dia[i]* conc;
+#endif
+#ifdef DBZ
+			z += conc * pow((double)dia[i] / 1000.0, 6.0);
+#endif
+			total_concen[ProbeCount] += conc;
+			}
+
+#ifdef PLWC
+	plwc[ProbeCount] *= M_PI / 6.0 * DENS * PLWFAC;
+#endif
+#ifdef DBZ
+	if (z > 0.0)
+		dbz[ProbeCount] = 10.0 * log10((double)(z * DBZFAC));
+	else
+		dbz[ProbeCount] = -100.0;
+#endif
+
+	if (total_concen[ProbeCount] > 0.0001)
+		{
+		dbar[ProbeCount] /= total_concen[ProbeCount];
+
+		disp[ProbeCount] = (NR_TYPE)sqrt(fabs((double)(dbar2 /
+			total_concen[ProbeCount] - dbar[ProbeCount] *
+			dbar[ProbeCount]))) / dbar[ProbeCount];
+		}
+	}
+
+/* END PMS1D_CV */
